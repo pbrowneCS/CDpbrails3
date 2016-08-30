@@ -1,0 +1,35 @@
+<% if current_user %>
+	<div class="container">
+		<div class="navbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="/songs">Dashboard</a></li>
+				<li><a href="/sessions/<%= current_user.id %>" data-method="delete">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+<% end %>
+<div class="container">
+<h4><%= @user.first_name %> <%= @user.last_name %>'s Playlist</h4>
+<div class="row">
+<div class="col-xs-12 col-md-4">
+<table class="table table-bordered">
+	<thead style="background-color:silver;">
+		<tr>
+			<th>Artist</th>
+			<th>Title</th>
+			<th>Times Added</th>
+		</tr>
+	</thead>
+	<% if @playlists %>
+		<% @playlists.each do |p| %>
+			<tbody>
+				<tr>
+					<td><%= p.song.artist %></td>
+					<td><%= p.song.title %></td>
+					<td><%= p.count %></td>
+				</tr>
+			</tbody>
+		<% end %>
+	<% end %>
+</table>
+<br>
